@@ -1,0 +1,62 @@
+spring:
+  main:
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+  application:
+    name: otp-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/otp_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: mail@yandex.ru
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          starttls:
+            enable: false
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+
+server:
+  port: 8080
+
+jwt:
+  secret: mySuperSecretKeyForJwtTokenGeneration1234567890!@#
+  expiration: 3600000
+
+otp:
+  cleanup:
+    interval: 60000
+  default:
+    ttl: 300
+    length: 6
+
+telegram:
+  bot:
+    token:
+    chat-id:
+    api-url: https://api.telegram.org/bot
+
+smpp:
+  host: localhost
+  port: 2775
+  system_id: smppclient1
+  password:
+  system_type: OTP
+  source_addr: OTPService
+
+logging:
+  level:
+    com.example.otpservice: DEBUG
+    org.springframework.security: INFO
